@@ -18,10 +18,9 @@ target.addEventListener('click', function(event) {
     if (target.style.display = 'flex') {
       target.style.display = 'none';
     };
-    document.getElementsByClassName('pic-left') = [];
+    galleryLeft.innerHTML = '';
   });
 var galleryLeftImages = function(pictureIndex) {
-    console.log(pictureIndex);
     for (var i = pictureIndex - 1; i >= 0; i--) {
         picLeft = document.createElement('img');
         picLeft.src = images[i];
