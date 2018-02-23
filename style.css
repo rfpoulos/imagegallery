@@ -68,11 +68,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-flow: column wrap;
 }
-.pic-left {
-    margin: 2em;
-    max-width: 15%;
-    max-height: 15%;
+.gallery-left pic {
+    display: flex;
 }
 .gallery-right {
     order: 1;
