@@ -102,3 +102,5 @@ for (var i = 0; i < images.length; i++) {
   var pic = createPic(i);
   gallery.appendChild(pic);
 };
+
+// here is some changed code
