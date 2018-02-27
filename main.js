@@ -1,6 +1,6 @@
-var gallery = document.querySelector('.gallery');
-var galleryLeft = document.querySelector('.gallery-left');
-var galleryRight = document.querySelector('.gallery-right');
+var $gallery = $('.gallery');
+var $galleryLeft = $('.gallery-left');
+var $galleryRight = $('.gallery-right');
 var images = [
   'https://images.pexels.com/photos/86933/pexels-photo-86933.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb',
   'https://images.pexels.com/photos/615060/pexels-photo-615060.jpeg?h=350&auto=compress&cs=tinysrgb',
@@ -53,51 +53,55 @@ var images = [
 
 ];
 
-var mainImage = document.createElement('img');
-var target = document.getElementsByClassName('light-box')[0];
-var div = document.createElement('div');
-div.classList.add('main-pic');
-target.appendChild(div).appendChild(mainImage);
-mainImage.src = images[0];
+var $mainImage = $('<img>', {
+  'src': images[0],
+});
+var $target = $('.light-box');
+console.log($target);
+var $div = $('<div>', {
+  'class': 'main-pic',
+});
+$target.append($div).append($mainImage);
 
-div.addEventListener('click', function(event) {
-      target.classList.remove('active');
-      galleryLeft.innerHTML = '';
-      galleryRight.innerHTML = '';
+$mainImage.click(function(event) {
+      $target.remove('active');
+      $galleryLeft.empty();
+      $galleryRight.empty();
   });
 var createPic = function(index) {
-  var pic = document.createElement('img');
-  pic.src = images[index];
-  pic.setAttribute('list-index', index);
-  pic.classList.add('pic');
-  pic.addEventListener('click', clickImage);
-  return pic;
+  var $pic = $('<img>', {
+    'src': images[index],
+    'list-index': index,
+    'class': 'pic',
+  });
+  $pic.click(clickImage);
+  return $pic;
 };
 var galleryLeftImages = function(pictureIndex) {
+  console.log(pictureIndex);
     for (var i = pictureIndex - 1; i >= 0 && i >= pictureIndex - 5; i--) {
-      var picLeft = createPic(i);
-      galleryLeft.appendChild(picLeft);
+      var $picLeft = createPic(i);
+      $galleryLeft.append($picLeft);
     };
 };
 var galleryRightImages = function(pictureIndex) {
   for (var i = pictureIndex + 1; i < images.length && i <= pictureIndex + 5; i++) {
-    var picRight = createPic(i);
-    galleryRight.appendChild(picRight);
+    var $picRight = createPic(i);
+    $galleryRight.append($picRight);
   };
 };
 var clickImage = function(event) {
-    galleryLeft.innerHTML = '';
-    galleryRight.innerHTML = '';
-    var clicked = parseInt(event.target.getAttribute("list-index"));
-    mainImage.src = event.target.src;
-    target.classList.add('active');
-    gallery.style.overflow = 'hidden';
-    console.log(clicked);
+    console.log(event.target.attributes[1].value);
+    $galleryLeft.empty();
+    $galleryRight.empty();
+    var clicked = event.target.attributes[1].value;
+    $mainImage['src'] = event.target.src;
+    $target.addClass('active');
     galleryLeftImages(clicked);
     galleryRightImages(clicked);
   };
 
 for (var i = 0; i < images.length; i++) {
-  var pic = createPic(i);
-  gallery.appendChild(pic);
+  var $pic = createPic(i);
+  $gallery.append($pic);
 };
