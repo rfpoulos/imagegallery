@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
 }
-****
+
 html {
     padding: 0;
     margin: 0;
@@ -19,12 +19,11 @@ body {
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;
-    padding: 2em;
-    width: 75%;
+    width: 70%;
     height: 100%;
 }
 .pic {
-    margin: 1em;
+    margin: .5em;
     max-width: 15%;
     max-height: 25%;
 }
@@ -40,6 +39,9 @@ body {
     width: 100%;
     background-color: rgba(125, 125, 125, .9);
     z-index: 1;
+}
+.active {
+    display: flex;
 }
 .light-box div {
     height: 100%;

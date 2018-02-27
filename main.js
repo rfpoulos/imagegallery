@@ -61,9 +61,7 @@ target.appendChild(div).appendChild(mainImage);
 mainImage.src = images[0];
 
 div.addEventListener('click', function(event) {
-    if (target.style.display === 'flex') {
-      target.style.display = 'none';
-    };
+      target.classList.remove('active');
       galleryLeft.innerHTML = '';
       galleryRight.innerHTML = '';
   });
@@ -92,7 +90,8 @@ var clickImage = function(event) {
     galleryRight.innerHTML = '';
     var clicked = parseInt(event.target.getAttribute("list-index"));
     mainImage.src = event.target.src;
-    target.style.display = 'flex';
+    target.classList.add('active');
+    gallery.style.overflow = 'hidden';
     console.log(clicked);
     galleryLeftImages(clicked);
     galleryRightImages(clicked);
