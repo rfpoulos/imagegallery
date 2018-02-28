@@ -57,14 +57,13 @@ var $mainImage = $('<img>', {
   'src': images[0],
 });
 var $target = $('.light-box');
-console.log($target);
 var $div = $('<div>', {
-  'class': 'main-pic',
+
 });
 $target.append($div).append($mainImage);
 
 $mainImage.click(function(event) {
-      $target.remove('active');
+      $target.removeClass('active');
       $galleryLeft.empty();
       $galleryRight.empty();
   });
@@ -78,7 +77,6 @@ var createPic = function(index) {
   return $pic;
 };
 var galleryLeftImages = function(pictureIndex) {
-  console.log(pictureIndex);
     for (var i = pictureIndex - 1; i >= 0 && i >= pictureIndex - 5; i--) {
       var $picLeft = createPic(i);
       $galleryLeft.append($picLeft);
@@ -91,11 +89,11 @@ var galleryRightImages = function(pictureIndex) {
   };
 };
 var clickImage = function(event) {
-    console.log(event.target.attributes[1].value);
+    console.log($mainImage);
     $galleryLeft.empty();
     $galleryRight.empty();
-    var clicked = event.target.attributes[1].value;
-    $mainImage['src'] = event.target.src;
+    var clicked = parseInt(event.target.attributes[1].value);
+    $mainImage[0]['src'] = event.target.attributes.src.nodeValue;
     $target.addClass('active');
     galleryLeftImages(clicked);
     galleryRightImages(clicked);
